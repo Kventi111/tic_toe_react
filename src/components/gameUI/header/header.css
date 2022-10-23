@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    color: red;
+    margin-bottom: 100px;
+    border: 1px solid green;
+}
+
+.player {
+    background: #391898;
+    padding: 10px 16px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.playerTitle {
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+.playerScore {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}

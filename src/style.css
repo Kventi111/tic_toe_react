@@ -1,0 +1,25 @@
+h1,
+p {
+  font-family: Lato;
+}
+
+body {
+  overflow: hidden;
+  background: linear-gradient(180deg, #5D5FEF 0%, #843CE0 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+
+  font-family: sans-serif;
+}
+
+#canvas {
+  background-color: #fa7e7e;
+}
+
+.game {
+  border: 1px solid red;
+}
