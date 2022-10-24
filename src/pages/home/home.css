@@ -1,0 +1,84 @@
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 600px;
+    position: relative;
+}
+
+.homeHeader {
+ display: flex;   
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.title span:nth-child(1) {
+    color: #F9D967;
+}
+.title span:nth-child(2) {
+    color: #E773FF;
+}
+.title span:nth-child(3) {
+    color: #4FFAFF;
+}
+
+.starsLeft,
+.starsRight {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    width: 95px;
+    height: 180px;
+}
+
+.starsLeft img {
+    position: absolute;
+}
+
+.starsLeft img:last-child {
+    bottom: 0;
+}
+.starsLeft img:first-child {
+    left: -20px;
+}
+
+.starsRight img {
+    position: absolute;
+}
+
+.starsRight img:last-child {
+    bottom: 0;
+}
+
+.starsRight img:first-child {
+    right: -20px;
+}
+
+.bigStartsBlock {
+    margin: 50px 0;
+}
+
+.starShip {
+    position: absolute;
+    bottom: 10px;
+    left: -20px;
+}
+
+.nlo {
+    position: absolute;
+    bottom: 85px;
+    right: -20px;
+}
+
+.homeButton {
+    font-size: 24px;
+}

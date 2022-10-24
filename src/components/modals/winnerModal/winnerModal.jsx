@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react';
 
-import { InstanceContext } from '../../../App'
+import { InstanceContext } from '../../../pages/gamePage'
 
 import Trophy from '../../../assets/trophy.png'
 

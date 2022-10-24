@@ -2,7 +2,7 @@ import { useContext } from 'react'
 
 import Player from './Player'
 import PlayerScore from './PlayerScore'
-import { InstanceContext } from '../../../App'
+import { InstanceContext } from '../../../pages/gamePage'
 
 
 import './header.css'

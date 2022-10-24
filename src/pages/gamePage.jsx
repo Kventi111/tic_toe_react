@@ -1,14 +1,14 @@
-import React, { useRef, useCallback,useState,createContext } from 'react';
+import React, { useRef, useCallback,createContext } from 'react';
 
-import Header from './components/gameUI/header'
-import UseShowModal from './hooks/useShowModal';
-import useInitInstance from './hooks/initGame';
+import Header from '../components/gameUI/header'
+import UseShowModal from '../hooks/useShowModal';
+import useInitInstance from '../hooks/initGame';
 
-import './style.css';
+import '../style.css';
 
 export const InstanceContext = createContext({})
 
-export default function App() {
+export function GamePage() {
   const canvasRef = useRef()
   const { gameInstance,rect,ctx } = useInitInstance(canvasRef)
   const { Modal, toogleModal, isOpen } = UseShowModal();
