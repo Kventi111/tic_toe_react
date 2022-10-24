@@ -17,101 +17,53 @@ export default class Game {
   }
 
   drawLine = (type) => {
-    const drawLineCords = {
-      dioganal1: {
-        move: {
-          x: 0,
-          y: 0,
-        },
-        pos: {
-          x: this.width,
-          y: this.height,
-        },
-      },
-      dioganal2: {
-        move: {
-          x: this.width,
-          y: 0,
-        },
-        pos: {
-          x: 0,
-          y: this.height,
-        },
-      },
-      col1: {
-        move: {
-          x: 66,
-          y: 0,
-        },
-        pos: {
-          x: 66,
-          y: 400,
-        },
-      },
-      col2: {
-        move: {
-          x: 199,
-          y: 0,
-        },
-        pos: {
-          x: 199,
-          y: 400,
-        },
-      },
-      col3: {
-        move: {
-          x: 331,
-          y: 0,
-        },
-        pos: {
-          x: 331,
-          y: 400,
-        },
-      },
-      row1: {
-        move: {
-          x: 400,
-          y: 66,
-        },
-        pos: {
-          x: 0,
-          y: 66,
-        },
-      },
-      row2: {
-        move: {
-          x: 400,
-          y: 199,
-        },
-        pos: {
-          x: 0,
-          y: 199,
-        },
-      },
-      row3: {
-        move: {
-          x: 400,
-          y: 331,
-        },
-        pos: {
-          x: 0,
-          y: 331,
-        },
-      },
-    };
+    if (type === 'dioganal1') {
+      console.log({ type });
+      for (let i = 0; i < this.gameGrid.length; i++) {
+        setTimeout(() => this.gameGrid[i][i].drawBorder(this.ctx, 'rgba(35,200,52,0.5)'), i * 100)
+      }
+    }
 
-    this.ctx.beginPath();
-    this.ctx.strokeStyle = 'red';
-    this.ctx.moveTo(drawLineCords[type].move.x, drawLineCords[type].move.y);
-    this.ctx.lineTo(drawLineCords[type].pos.x, drawLineCords[type].pos.y);
-    this.ctx.stroke();
-    this.ctx.closePath();
+    if (type === 'dioganal2') {
+      for (let i = 0, j = this.gameGrid.length - 1; i < this.gameGrid.length, j >= 0; i++, j--) {
+        setTimeout(() => this.gameGrid[j][i].drawBorder(this.ctx, 'rgba(35,200,52,0.5)'), i * 100)
+      }
+    }
+
+    if (type === 'col1') {
+      for (let i = 0; i < this.gameGrid.length; i++) {
+        setTimeout(() => this.gameGrid[0][i].drawBorder(this.ctx, 'rgba(35,200,52,0.5)'), i * 100)
+      }
+    }
+    if (type === 'col2') {
+      for (let i = 0; i < this.gameGrid.length; i++) {
+        setTimeout(() => this.gameGrid[1][i].drawBorder(this.ctx, 'rgba(35,200,52,0.5)'), i * 100)
+      }
+    }
+    if (type === 'col3') {
+      for (let i = 0; i < this.gameGrid.length; i++) {
+        setTimeout(() => this.gameGrid[2][i].drawBorder(this.ctx, 'rgba(35,200,52,0.5)'), i * 100)
+      }
+    }
+
+    if (type === 'row1') {
+      for (let i = 0; i < this.gameGrid.length; i++) {
+        setTimeout(() => this.gameGrid[i][0].drawBorder(this.ctx, 'rgba(35,200,52,0.5)'), i * 100)
+      }
+    }
+    if (type === 'row2') {
+      for (let i = 0; i < this.gameGrid.length; i++) {
+        setTimeout(() => this.gameGrid[i][1].drawBorder(this.ctx, 'rgba(35,200,52,0.5)'), i * 100)
+      }
+    }
+    if (type === 'row3') {
+      for (let i = 0; i < this.gameGrid.length; i++) {
+        setTimeout(() => this.gameGrid[i][2].drawBorder(this.ctx, 'rgba(35,200,52,0.5)'), i * 100)
+      }
+    }
   };
 
   resetGame = () => {
-    const banner = document.querySelector('.winner_banner');
-    banner.classList.remove('show');
-
     this.initGrid();
     this.renderGameField();
   };
@@ -132,7 +84,6 @@ export default class Game {
       }
     }
 
-    console.log({ gameGrid });
   };
 
   renderGameField = () => {

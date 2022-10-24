@@ -1,10 +1,19 @@
-import * as React from 'react';
+import { useCallback, useContext } from 'react';
+
+import { InstanceContext } from '../../../App'
 
 import Trophy from '../../../assets/trophy.png'
 
 import './winnerModal.css';
 
 export default function WinnerModal() {
+  const { gameInstance,toogleModal } = useContext(InstanceContext)
+
+  const handleResetGame = useCallback(() => {
+    toogleModal('winModal')
+    gameInstance.resetGame()
+  },[])
+
   return (
     <div className="modalWrapper">
       <div className="modal">
@@ -16,7 +25,7 @@ export default function WinnerModal() {
         </div>
         <div className="modalFooter">
           <button className='button primary'>back</button>
-          <button className='button primary'>Play Again</button>
+          <button onClick={handleResetGame} className='button primary'>Play Again</button>
         </div>
       </div>
     </div>

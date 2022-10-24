@@ -1,18 +1,16 @@
-import React, { useRef, useEffect, useCallback } from 'react';
-
-import Game from './game/game';
+import React, { useRef, useCallback,useState,createContext } from 'react';
 
 import Header from './components/gameUI/header'
-
 import UseShowModal from './hooks/useShowModal';
+import useInitInstance from './hooks/initGame';
 
 import './style.css';
 
+export const InstanceContext = createContext({})
+
 export default function App() {
-  const canvas = useRef();
-  let gameInstance = useRef();
-  let ctx = useRef();
-  let rect = useRef();
+  const canvasRef = useRef()
+  const { gameInstance,rect,ctx } = useInitInstance(canvasRef)
   const { Modal, toogleModal, isOpen } = UseShowModal();
 
   const handleCanvasClick = useCallback((event) => {
@@ -40,45 +38,31 @@ export default function App() {
       gameInstance.drawLine(type);
 
       toogleModal('winModal');
-      // alert(gameInstance.pickCross ? 'Победил Крестик' : 'Победил Нолик');
     }
 
     if (gameInstance.checkGameGridIsFull()) {
       if (!win) {
-        // Ui.showWinnerBanner('Победила дружба');
-        // console.log('nit', { type });
-        alert('Победила дружба');
+        toogleModal('winModal');
       }
     }
-  }, []);
+  }, [gameInstance]);
 
-  useEffect(() => {
-    if (!canvas.current) return;
 
-    ctx = canvas.current.getContext('2d');
-    rect = canvas.current.getClientRects();
-    gameInstance = new Game(
-      canvas.current.width,
-      canvas.current.height,
-      3,
-      3,
-      ctx
-    );
-  }, [canvas]);
-
-  console.log('app', { isOpen, Modal });
+  console.log('app', { isOpen, Modal,canvasRef,gameInstance,rect,ctx });
 
   return (
-    <div className='game'>
-      <Header />
-      <canvas
-        onClick={handleCanvasClick}
-        ref={canvas}
-        id="canvas"
-        width="400"
-        height="400"
-      ></canvas>
-      {isOpen && <Modal />}
-    </div>
+    <InstanceContext.Provider value={{ gameInstance,rect,ctx,toogleModal }}>
+      <div className='game'>
+        <Header />
+        <canvas
+          onClick={handleCanvasClick}
+          ref={canvasRef}
+          id="canvas"
+          width="400"
+          height="400"
+        ></canvas>
+        {isOpen && <Modal  />}
+      </div>
+    </InstanceContext.Provider>
   );
 }

@@ -1,19 +1,37 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Game from '../game/game';
 
-export function useInitGame(canvasRef) {
-  // console.log(canvasRef);
+export default function useInit(canvasRef) {
+  let init = useRef(false);
+  let [ctx, setCtx] = useState(undefined);
+  let [rect, setRect] = useState(undefined);
+  let [game, setGame] = useState(undefined);
 
-  let gameInstance = useRef();
-  const CANVAS_WIDTH = canvasRef.current.clientWidth;
-  const CANVAS_HEIGHT = canvasRef.current.clientHeight;
+  console.log({ init })
 
   useEffect(() => {
-    // console.log(canvasRef);
+    if (!canvasRef.current) return;
 
-    gameInstance = new Game(CANVAS_WIDTH, CANVAS_HEIGHT, 3, 3, ctx);
-    // console.log({ gameInstance });
-  });
+    setCtx(canvasRef.current.getContext('2d'));
+    setRect(canvasRef.current.getClientRects());
 
-  return gameInstance;
+    if (ctx) {
+      setGame(new Game(
+        canvasRef.current.width,
+        canvasRef.current.height,
+        3,
+        3,
+        ctx
+      ))
+
+      init.current = true
+    }
+
+
+
+
+
+  }, [canvasRef, init, ctx]);
+
+  return { gameInstance: game, rect, ctx, init };
 }
